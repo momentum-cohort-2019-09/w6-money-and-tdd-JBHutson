@@ -1,5 +1,5 @@
 import pytest
-from money import Money, Currency, DifferentCurrencyError
+from money import Money, Currency, DifferentCurrencyError, NegativeOperandError
 
 USD = Currency("United States dollar", "USD", "$")
 BHD = Currency("Bahraini dinar", "BHD", digits=3)
@@ -87,3 +87,25 @@ def test_mul_money():
 def test_div_money():
     assert Money(3, USD).div(3) == Money(1, USD)
     assert Money(12, USD).div(4) == Money(3, USD)
+
+def test_div_money_exceptions():
+    with pytest.raises(ZeroDivisionError):
+        Money(3, USD).div(0)
+    with pytest.raises(NegativeOperandError):
+        Money(3, USD).div(-1)
+
+def test_mul_money_excpetions():
+    with pytest.raises(NegativeOperandError):
+        Money(3, USD).mul(-1)
+
+def test_add_money_magic():
+    assert Money(1, USD).__add__(Money(1, USD)) == Money(2, USD)
+
+def test_sub_money_magic():
+    assert Money(5, USD).__sub__(Money(2, USD)) == Money(3, USD)
+
+def test_mul_money_magic():
+    assert Money(5, USD).__mul__(2) == Money(10, USD)
+
+def test_div_money_magic():
+    assert Money(5, USD).__div__(5) == Money(1, USD)

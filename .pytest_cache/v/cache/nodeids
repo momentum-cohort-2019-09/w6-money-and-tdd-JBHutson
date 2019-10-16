@@ -13,5 +13,11 @@
   "money_test.py::test_add_different_currencies",
   "money_test.py::test_sub_different_currencies",
   "money_test.py::test_mul_money",
-  "money_test.py::test_div_money"
+  "money_test.py::test_div_money",
+  "money_test.py::test_div_money_exceptions",
+  "money_test.py::test_mul_money_excpetions",
+  "money_test.py::test_add_money_magic",
+  "money_test.py::test_sub_money_magic",
+  "money_test.py::test_mul_money_magic",
+  "money_test.py::test_div_money_magic"
 ]
